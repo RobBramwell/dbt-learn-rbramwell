@@ -15,10 +15,11 @@ orders as (
 )
 
 select
-  payments.order_id,
+  orders.order_id,
   orders.customer_id,
   orders.order_date,
-  payments.amount
+  sum(payments.amount) as amount
 from orders
 left join payments on
 orders.order_id = payments.order_id
+group by orders.order_id, orders.customer_id, orders.order_date

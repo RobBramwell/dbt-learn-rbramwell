@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: "{{ doc('jaffle_shop') }}"
+    database: raw
+    schema: jaffle_shop
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: customers
+      - name: orders
+  - name: stripe
+    database: raw
+    schema: stripe
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: payment
+        description: This is the payments data coming from the raw database

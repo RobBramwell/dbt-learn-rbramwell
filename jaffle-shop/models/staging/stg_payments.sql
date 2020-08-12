@@ -7,7 +7,7 @@ with source as (
     amount /100 as amount,
     status as payment_status
 
-    from raw.stripe.payment
+    from  {{source('stripe','payment')}}
 
 )
 
